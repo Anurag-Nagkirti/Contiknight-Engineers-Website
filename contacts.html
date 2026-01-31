@@ -13,9 +13,17 @@
     nav { display:flex; gap:20px; }
     nav a { color:#fff; text-decoration:none; font-size:16px; transition:color 0.3s; }
     nav a:hover { color:#f1c40f; }
-    .contact-info { background:#fff; padding:40px; max-width:600px; margin:40px auto; border-radius:8px; box-shadow:0 0 10px rgba(0,0,0,0.2); }
+    .contact-info { background:#fff; padding:40px; max-width:800px; margin:40px auto; border-radius:8px; box-shadow:0 0 10px rgba(0,0,0,0.2); }
     .contact-info h2 { color:#333; margin-bottom:20px; }
     .contact-info p { font-size:16px; margin:10px 0; }
+    form { margin-top:30px; }
+    label { display:block; margin:10px 0 5px; font-weight:bold; }
+    input, select, textarea { width:100%; padding:10px; border:1px solid #ccc; border-radius:5px; }
+    textarea { height:120px; }
+    .checkbox-group { display:flex; flex-wrap:wrap; gap:10px; margin:10px 0; }
+    .checkbox-group label { font-weight:normal; }
+    button { background:#1a1a2e; color:#fff; padding:12px 20px; border:none; border-radius:5px; cursor:pointer; font-size:16px; margin-top:15px; }
+    button:hover { background:#e94560; }
   </style>
 </head>
 <body>
@@ -38,10 +46,76 @@
 </header>
 
 <div class="contact-info">
-  <h2>Contacts Us :</h2>
+  <h2>Contact Us</h2>
   <p><strong>Pandurang Nagkirti</strong>: Mobile +91 9561419207 | Email pandurang.nagkirti@contiknight.com</p>
   <p><strong>Anurag Nagkirti</strong>: Office Phone +91 9975082204 | Mobile +91 9284812033 | Email anurag.nagkirti@contiknight.com</p>
-  <p><strong>Sanghmitra Nagkirti</strong>: Mobile +91 8412975410 | Email sanghmitra.nagkirticContiknight.com</p>
+  <p><strong>Sanghmitra Nagkirti</strong>: Mobile +91 8412975410 | Email sanghmitra.nagkirti@contiknight.com</p>
+
+  <h2>Inquiry Form</h2>
+  <form action="mailto:anagkirti@gmail.com" method="post" enctype="text/plain">
+    <!-- Basic Contact Information -->
+    <label for="name">Full Name / Primary Contact</label>
+    <input type="text" id="name" name="Full Name" required>
+
+    <label for="company">Company Name</label>
+    <input type="text" id="company" name="Company Name">
+
+    <label for="email">Email Address</label>
+    <input type="email" id="email" name="Email Address" required>
+
+    <label for="phone">Phone Number</label>
+    <input type="tel" id="phone" name="Phone Number">
+
+    <!-- Project Fundamentals -->
+    <label for="projectType">Type of Project</label>
+    <select id="projectType" name="Project Type">
+      <option>Residential</option>
+      <option>Commercial</option>
+      <option>Industrial</option>
+      <option>Infrastructure</option>
+    </select>
+
+    <label>Service Required</label>
+    <div class="checkbox-group">
+      <label><input type="checkbox" name="Service Required" value="Mechanical / HVAC"> Mechanical / HVAC</label>
+      <label><input type="checkbox" name="Service Required" value="Electrical Systems"> Electrical Systems</label>
+      <label><input type="checkbox" name="Service Required" value="Plumbing & Firefighting"> Plumbing & Firefighting</label>
+      <label><input type="checkbox" name="Service Required" value="Renewable Energy / Solar"> Renewable Energy / Solar</label>
+      <label><input type="checkbox" name="Service Required" value="BIM Modeling"> BIM Modeling</label>
+    </div>
+
+    <label for="location">Project Location (City/State)</label>
+    <input type="text" id="location" name="Project Location">
+
+    <!-- Technical & Logistics Details -->
+    <label for="stage">Project Stage</label>
+    <select id="stage" name="Project Stage">
+      <option>Conceptual / Design</option>
+      <option>Tender Stage</option>
+      <option>Execution / Construction</option>
+      <option>Maintenance</option>
+    </select>
+
+    <label for="budget">Estimated Budget</label>
+    <select id="budget" name="Estimated Budget">
+      <option>Below ₹10 Lakhs</option>
+      <option>₹10–50 Lakhs</option>
+      <option>₹50 Lakhs–1 Crore</option>
+      <option>Above 1 Crore</option>
+    </select>
+
+    <label for="timeline">Estimated Timeline</label>
+    <input type="text" id="timeline" name="Estimated Timeline" placeholder="e.g., Start in March 2026, finish by Dec 2026">
+
+    <!-- Deep-Dive Section -->
+    <label for="description">Project Description</label>
+    <textarea id="description" name="Project Description"></textarea>
+
+    <label for="file">Upload File (PDF/CAD)</label>
+    <input type="file" id="file" name="File Upload" accept=".pdf,.dwg,.dxf,.zip">
+
+    <button type="submit">Submit Inquiry</button>
+  </form>
 </div>
 
 </body>
