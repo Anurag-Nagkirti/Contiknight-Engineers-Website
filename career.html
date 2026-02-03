@@ -2,39 +2,115 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Career - Contiknight Engineers</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Careers - Contiknight Engineers</title>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
   <style>
+    :root {
+      --primary-color: #e94560; 
+      --secondary-color: #4dbae2; 
+      --bg-dark: #0b0c10;
+      --glass-bg: rgba(255, 255, 255, 0.04);
+      --header-bg: rgba(11, 12, 16, 0.92);
+      --accent-gradient: linear-gradient(135deg, #e94560 0%, #4dbae2 100%);
+    }
+
+    * { box-sizing: border-box; }
+
     body {
-      font-family: Arial, sans-serif;
-      margin:0;
-      padding-top:90px; /* offset for fixed header */
-      background:#0b0c10;
-      color:#fff;
-      overflow-x:hidden;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      margin: 0;
+      padding-top: 120px;
+      background: var(--bg-dark);
+      color: #fff;
+      overflow-x: hidden;
     }
-    #bgCanvas {
-      position:fixed; top:0; left:0; width:100%; height:100%;
-      z-index:-1; background:#0b0c10;
-    }
+
+    #bgCanvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; }
+
+    /* --- UNIQUE HEADER --- */
     header {
-      background:#1a1a2e; color:#fff;
-      display:flex; justify-content:space-between; align-items:center;
-      padding:15px 20px; position:fixed; top:0; left:0; width:100%;
-      z-index:1000; height:90px; box-shadow:0 2px 6px rgba(0,0,0,0.4);
+      background: var(--header-bg);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 5%;
+      position: fixed;
+      top: 0; left: 0; width: 100%;
+      z-index: 1000;
+      height: 95px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
     }
-    .logo-section { display:flex; align-items:center; gap:15px; }
-    .logo-section img { height:70px; }
-    .logo-text h1 { margin:0; font-size:26px; font-weight:bold; color:#e94560; }
-    .logo-text p { margin:0; font-size:14px; color:#ddd; }
-    nav { display:flex; gap:15px; flex-wrap:wrap; justify-content:flex-start; }
-    nav a { color:#fff; text-decoration:none; font-size:16px; transition:color 0.3s; }
-    nav a:hover { color:#fefefe; }
-    .content { padding:40px; text-align:center; }
-    h2 { color:#4dbae2; margin-bottom:20px; }
-    .job-list { max-width:800px; margin:0 auto; text-align:left; }
-    .job-list h3 { color:#e94560; margin-top:20px; }
-    .job-list p { margin:5px 0; }
-    footer { background:#5aaff4; color:#fbfbfa; text-align:center; padding:15px; margin-top:20px; }
+
+    .logo-section { display: flex; align-items: center; gap: 15px; cursor: pointer; }
+    .logo-section img { height: 60px; filter: drop-shadow(0 0 10px rgba(233, 69, 96, 0.4)); }
+    .logo-text h1 { margin: 0; font-size: 24px; font-weight: 800; }
+    .brand-white { color: #fff; }
+    .brand-gradient { background: var(--accent-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+
+    nav { display: flex; align-items: center; gap: 20px; }
+    nav a { color: rgba(255,255,255,0.8); text-decoration: none; font-size: 13px; font-weight: 600; text-transform: uppercase; transition: 0.3s; }
+    nav a:hover { color: var(--secondary-color); }
+    .btn-download { background: var(--accent-gradient); padding: 10px 18px; border-radius: 6px; color: #fff !important; font-size: 12px; display: flex; align-items: center; gap: 8px; box-shadow: 0 4px 15px rgba(233, 69, 96, 0.3); }
+
+    /* --- CAREER CONTENT --- */
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 5% 100px; }
+    
+    .hero-text { text-align: center; margin-bottom: 60px; }
+    .hero-text h1 { font-size: 4rem; font-weight: 800; margin: 0; }
+    .hero-text p { font-size: 1.2rem; color: #8892b0; max-width: 700px; margin: 20px auto; line-height: 1.8; }
+
+    /* DEPARTMENT CARDS */
+    .dept-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-bottom: 80px; }
+    
+    .dept-card {
+      background: var(--glass-bg);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      padding: 40px;
+      border-radius: 30px;
+      transition: 0.4s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .dept-card:hover { border-color: var(--secondary-color); transform: translateY(-10px); }
+    .dept-card h2 { font-size: 24px; color: var(--secondary-color); margin-top: 0; }
+    .dept-card ul { list-style: none; padding: 0; margin: 25px 0; }
+    .dept-card li { padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.05); color: #ccd6f6; display: flex; align-items: center; gap: 10px; }
+    .dept-card li::before { content: '→'; color: var(--primary-color); font-weight: bold; }
+
+    /* APPLICATION CTA */
+    .apply-section {
+      background: var(--accent-gradient);
+      padding: 60px;
+      border-radius: 40px;
+      text-align: center;
+      color: #fff;
+      box-shadow: 0 20px 40px rgba(233, 69, 96, 0.3);
+    }
+
+    .apply-section h2 { font-size: 32px; font-weight: 800; margin-bottom: 15px; }
+    .email-box {
+      display: inline-block;
+      background: rgba(0,0,0,0.2);
+      padding: 15px 30px;
+      border-radius: 12px;
+      font-size: 20px;
+      font-weight: 600;
+      margin: 20px 0;
+      border: 1px dashed rgba(255,255,255,0.5);
+    }
+
+    footer { background: #000; padding: 40px; text-align: center; border-top: 1px solid rgba(255,255,255,0.05); }
+
+    @media (max-width: 768px) {
+      .hero-text h1 { font-size: 2.5rem; }
+      header { height: auto; padding: 20px; flex-direction: column; gap: 15px; }
+      body { padding-top: 250px; }
+    }
   </style>
 </head>
 <body>
@@ -42,11 +118,11 @@
 <canvas id="bgCanvas"></canvas>
 
 <header>
-  <div class="logo-section">
+  <div class="logo-section" onclick="window.location.href='index.html'">
     <img src="images/logo.png" alt="Contiknight Engineers Logo">
     <div class="logo-text">
-      <h1>Contiknight Engineers</h1>
-      <p>Mechanical, Electrical & Plumbing Excellence</p>
+      <h1><span class="brand-white">CONTIKNIGHT</span> <span class="brand-gradient">ENGINEERS</span></h1>
+      <p>Precision • Trust • Excellence</p>
     </div>
   </div>
   <nav>
@@ -54,100 +130,98 @@
     <a href="services.html">Services</a>
     <a href="gallery.html">Gallery</a>
     <a href="contacts.html">Contacts</a>
-    <a href="career.html">Career</a>
+    <a href="career.html" style="color: var(--secondary-color);">Career</a>
+    <a href="brochure.pdf" class="btn-download" download>Download Brochure</a>
   </nav>
 </header>
 
-<div class="content">
-  <h2>Career Opportunities</h2>
-  <p>At Contiknight Engineers, we believe in building not just projects but also careers. We are always looking for passionate professionals in plumbing, electrical, and mechanical fields to join our growing team.</p>
-
-  <div class="job-list">
-    <h3>Plumbing Roles</h3>
-    <p>✔ Pipeline installation specialists</p>
-    <p>✔ Water system engineers</p>
-    <p>✔ Maintenance technicians</p>
-
-    <h3>Electrical Roles</h3>
-    <p>✔ Electrical design engineers</p>
-    <p>✔ Panel board technicians</p>
-    <p>✔ Automation specialists</p>
-
-    <h3>Mechanical & Fabrication Roles</h3>
-    <p>✔ Fabrication engineers</p>
-    <p>✔ HVAC technicians</p>
-    <p>✔ Welding and assembly experts</p>
+<div class="container">
+  <div class="hero-text">
+    <h1>Build Your <span class="brand-gradient">Future</span></h1>
+    <p>At Contiknight Engineers, we don't just hire employees; we welcome innovators, problem-solvers, and craftsmen into our engineering family.</p>
   </div>
 
-  <p style="margin-top:30px;">Send your resume to <strong>hr@contiknight.com</strong> and be part of our family legacy of engineering excellence.</p>
+  <div class="dept-grid">
+    <div class="dept-card">
+      <h2>Plumbing Systems</h2>
+      <ul>
+        <li>Pipeline Installation Specialists</li>
+        <li>Water System Design Engineers</li>
+        <li>Senior Maintenance Technicians</li>
+        <li>Project Supervisors (Plumbing)</li>
+      </ul>
+    </div>
+
+    <div class="dept-card">
+      <h2>Electrical Engineering</h2>
+      <ul>
+        <li>Electrical Design Engineers</li>
+        <li>Automation & PLC Specialists</li>
+        <li>Panel Board Technicians</li>
+        <li>Smart-Grid Integration Experts</li>
+      </ul>
+    </div>
+
+    <div class="dept-card">
+      <h2>Mechanical & Fabrication</h2>
+      <ul>
+        <li>Industrial Fabrication Engineers</li>
+        <li>HVAC Design & Installers</li>
+        <li>Precision Welding Experts</li>
+        <li>Mechanical Assembly Leads</li>
+      </ul>
+    </div>
+  </div>
+
+  <section class="apply-section">
+    <h2>Ready to start your journey?</h2>
+    <p>We are always on the lookout for talent. Even if you don't see a specific role, send us your portfolio.</p>
+    <div class="email-box">hr@contiknight.com</div>
+    <p style="font-size: 14px; opacity: 0.8;">Please include your Resume & Project Portfolio (PDF/Work Links)</p>
+  </section>
 </div>
 
+
+
 <footer>
-  <p>&copy; 2026 Contiknight Engineers | Empowering careers in MEP</p>
+  <p>&copy; 2026 Contiknight Engineers | Empowering the Next Generation of MEP Excellence</p>
 </footer>
 
 <script>
+  /* --- PARTICLE BACKGROUND --- */
   const canvas = document.getElementById('bgCanvas');
   const ctx = canvas.getContext('2d');
   let particles = [];
-
-  function resizeCanvas() {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-  }
+  function resizeCanvas() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
   window.addEventListener('resize', resizeCanvas);
   resizeCanvas();
 
-  for (let i = 0; i < 100; i++) {
+  for (let i = 0; i < 80; i++) {
     particles.push({
       x: Math.random() * canvas.width,
       y: Math.random() * canvas.height,
-      vx: (Math.random() - 0.5),
-      vy: (Math.random() - 0.5),
-      radius: Math.random() * 2 + 1
+      vx: (Math.random() - 0.5) * 0.4,
+      vy: (Math.random() - 0.5) * 0.4,
+      radius: Math.random() * 1.5 + 1
     });
   }
 
   function draw() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     particles.forEach(p => {
-      ctx.beginPath();
-      ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-      ctx.fillStyle = 'rgba(77,186,226,0.8)';
-      ctx.shadowColor = '#4dbae2';
-      ctx.shadowBlur = 15;
-      ctx.fill();
+      ctx.beginPath(); ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(77,186,226,0.3)'; ctx.fill();
     });
+    ctx.strokeStyle = 'rgba(77,186,226,0.08)';
     for (let i = 0; i < particles.length; i++) {
       for (let j = i + 1; j < particles.length; j++) {
-        let dx = particles[i].x - particles[j].x;
-        let dy = particles[i].y - particles[j].y;
-        let dist = Math.sqrt(dx*dx + dy*dy);
-        if (dist < 150) {
-          ctx.strokeStyle = 'rgba(77,186,226,0.2)';
-          ctx.lineWidth = 1;
-          ctx.beginPath();
-          ctx.moveTo(particles[i].x, particles[i].y);
-          ctx.lineTo(particles[j].x, particles[j].y);
-          ctx.stroke();
-        }
+        let dx = particles[i].x - particles[j].x, dy = particles[i].y - particles[j].y, dist = Math.sqrt(dx*dx + dy*dy);
+        if (dist < 150) { ctx.beginPath(); ctx.moveTo(particles[i].x, particles[i].y); ctx.lineTo(particles[j].x, particles[j].y); ctx.stroke(); }
       }
     }
   }
-
-  function update() {
-    particles.forEach(p => {
-      p.x += p.vx; p.y += p.vy;
-      if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
-      if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
-    });
-  }
-
-  function loop() {
-    update(); draw(); requestAnimationFrame(loop);
-  }
+  function loop() { particles.forEach(p => { p.x += p.vx; p.y += p.vy; if (p.x < 0 || p.x > canvas.width) p.vx *= -1; if (p.y < 0 || p.y > canvas.height) p.vy *= -1; }); draw(); requestAnimationFrame(loop); }
   loop();
 </script>
-
 </body>
 </html>
