@@ -4,26 +4,27 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Contiknight Engineers - MEP Solutions</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
   <style>
     :root {
-      --primary-color: #e94560;
-      --secondary-color: #4dbae2;
+      --primary-color: #e94560; 
+      --secondary-color: #4dbae2; 
       --bg-dark: #0b0c10;
-      --glass-bg: rgba(255, 255, 255, 0.07);
-      --header-bg: rgba(26, 26, 46, 0.95);
+      --glass-bg: rgba(255, 255, 255, 0.04);
+      --header-bg: rgba(11, 12, 16, 0.92);
+      --accent-gradient: linear-gradient(135deg, #e94560 0%, #4dbae2 100%);
     }
 
     * { box-sizing: border-box; }
 
     body {
-      font-family: 'Inter', sans-serif;
+      font-family: 'Plus Jakarta Sans', sans-serif;
       margin: 0;
-      padding-top: 100px;
+      padding-top: 110px;
       background: var(--bg-dark);
       color: #fff;
       overflow-x: hidden;
-      line-height: 1.6;
+      line-height: 1.8;
     }
 
     #bgCanvas {
@@ -35,11 +36,11 @@
       z-index: -1;
     }
 
-    /* Enhanced Header */
+    /* --- UNIQUE ATTRACTIVE HEADER --- */
     header {
       background: var(--header-bg);
-      backdrop-filter: blur(10px);
-      color: #fff;
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -49,113 +50,186 @@
       left: 0;
       width: 100%;
       z-index: 1000;
-      height: 90px;
-      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      height: 95px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
     }
 
-    .logo-section { display: flex; align-items: center; gap: 15px; }
-    .logo-section img { height: 60px; filter: drop-shadow(0 0 5px rgba(233, 69, 96, 0.5)); }
-    .logo-text h1 { margin: 0; font-size: 24px; font-weight: 800; color: var(--primary-color); letter-spacing: 1px; }
-    .logo-text p { margin: 0; font-size: 12px; color: #bbb; text-transform: uppercase; letter-spacing: 1px; }
+    .logo-section { 
+      display: flex; 
+      align-items: center; 
+      gap: 15px; 
+      cursor: pointer;
+    }
+    
+    .logo-section img { 
+      height: 60px; 
+      filter: drop-shadow(0 0 10px rgba(233, 69, 96, 0.4));
+    }
 
-    nav { display: flex; gap: 25px; }
-    nav a { 
-      color: #fff; 
-      text-decoration: none; 
-      font-size: 15px; 
+    .logo-text h1 { 
+      margin: 0; 
+      font-size: 24px; 
+      font-weight: 800; 
+      letter-spacing: -0.5px;
+      line-height: 1.1;
+    }
+
+    .brand-white { color: #fff; }
+    .brand-gradient { 
+      background: var(--accent-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .logo-text p { 
+      margin: 4px 0 0 0; 
+      font-size: 11px; 
+      color: var(--secondary-color); 
+      text-transform: uppercase; 
+      letter-spacing: 2px; 
       font-weight: 600;
-      transition: all 0.3s ease; 
-      position: relative;
     }
-    nav a::after {
-      content: '';
-      position: absolute;
-      width: 0;
-      height: 2px;
-      bottom: -5px;
-      left: 0;
-      background: var(--secondary-color);
-      transition: width 0.3s;
+
+    nav { display: flex; align-items: center; gap: 20px; }
+    
+    nav a {
+      color: rgba(255,255,255,0.8);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 600;
+      transition: 0.3s;
+      text-transform: uppercase;
     }
-    nav a:hover::after { width: 100%; }
+    
     nav a:hover { color: var(--secondary-color); }
 
-    /* Hero Section Enhancement */
-    .hero {
-      background: linear-gradient(rgba(11, 12, 16, 0.6), rgba(11, 12, 16, 0.6)), url("images/mep_banner.jpg") no-repeat center center/cover;
-      height: 250px;
+    .btn-download {
+      background: var(--accent-gradient);
+      padding: 10px 18px;
+      border-radius: 6px;
+      color: #fff !important;
+      font-size: 12px;
       display: flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 4px 15px rgba(233, 69, 96, 0.3);
+    }
+
+    .btn-download:hover {
+      transform: translateY(-2px);
+      filter: brightness(1.1);
+    }
+
+    /* --- HERO --- */
+    .hero {
+      background: linear-gradient(rgba(11, 12, 16, 0.75), rgba(11, 12, 16, 0.75)), url("images/mep_banner.jpg") no-repeat center center/cover;
+      height: 300px;
+      display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
       color: #fff;
-      font-size: 2.5em;
-      font-weight: 800;
-      text-shadow: 0 4px 10px rgba(0,0,0,0.5);
-      border-radius: 20px;
+      text-align: center;
+      border-radius: 25px;
       margin: 20px 5%;
-      border: 1px solid rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.05);
     }
 
-    /* GIF Section Enhancement */
-    .gif-section { 
-        display: flex; 
-        justify-content: center; 
-        gap: 20px; 
-        flex-wrap: wrap; 
-        margin: 40px 0; 
+    .hero h2 { font-size: 3.5rem; margin: 0; font-weight: 800; }
+
+    /* --- CONTENT CARDS --- */
+    .main-container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 5% 100px;
+    }
+
+    .section-card {
+      background: var(--glass-bg);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      padding: 60px;
+      border-radius: 35px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      margin-bottom: 50px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+    }
+
+    h2 {
+      color: var(--secondary-color);
+      font-size: 34px;
+      font-weight: 800;
+      margin-top: 0;
+      margin-bottom: 30px;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    h2::after {
+      content: '';
+      flex-grow: 1;
+      height: 1px;
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    p { font-size: 18px; color: #cbd5e1; margin-bottom: 25px; }
+    strong { color: var(--secondary-color); font-weight: 700; }
+
+    /* --- VALUES STYLING --- */
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 25px;
+    }
+
+    .value-box {
+      background: rgba(255, 255, 255, 0.02);
+      padding: 30px;
+      border-radius: 20px;
+      border-left: 4px solid var(--primary-color);
+      transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .value-box:hover {
+      background: rgba(255, 255, 255, 0.05);
+      transform: scale(1.03);
+    }
+
+    .value-box h3 {
+      color: #fff;
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
+
+    .gif-section {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        flex-wrap: wrap;
+        margin: 50px 0;
     }
     .gif-section img {
-      height: 180px;
-      width: 280px;
+      height: 200px;
+      width: 300px;
       object-fit: cover;
-      border-radius: 15px;
-      border: 2px solid rgba(77, 186, 226, 0.3);
-      transition: transform 0.4s ease, border-color 0.4s ease;
+      border-radius: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      transition: 0.5s;
     }
-    .gif-section img:hover {
-        transform: translateY(-10px);
-        border-color: var(--secondary-color);
-    }
-
-    /* Content Area Enhancement */
-    .content {
-      padding: 60px;
-      text-align: left;
-      max-width: 1000px;
-      margin: 40px auto;
-      background: var(--glass-bg);
-      backdrop-filter: blur(15px);
-      border-radius: 24px;
-      border: 1px solid rgba(255,255,255,0.1);
-      box-shadow: 0 8px 32px rgba(0,0,0,0.3);
-    }
-
-    .content h2 { 
-        color: var(--secondary-color); 
-        margin-top: 40px; 
-        font-size: 28px;
-        border-left: 4px solid var(--primary-color);
-        padding-left: 15px;
-    }
-    
-    .content p { font-weight: 300; font-size: 17px; color: #e0e0e0; margin-bottom: 20px; }
-    .content strong { color: var(--secondary-color); font-weight: 600; }
 
     footer {
-      background: rgba(90, 175, 244, 0.1);
-      backdrop-filter: blur(5px);
-      border-top: 1px solid rgba(255,255,255,0.1);
-      color: #aaa;
+      background: #000;
+      padding: 60px 20px;
       text-align: center;
-      padding: 30px;
-      margin-top: 50px;
+      border-top: 1px solid rgba(255,255,255,0.05);
     }
 
-    @media (max-width: 768px) {
+    @media (max-width: 900px) {
       header { height: auto; padding: 20px; flex-direction: column; gap: 20px; }
-      body { padding-top: 180px; }
-      .hero { font-size: 1.5em; height: 150px; }
+      body { padding-top: 250px; }
+      .hero h2 { font-size: 2.2rem; }
     }
   </style>
 </head>
@@ -164,11 +238,11 @@
 <canvas id="bgCanvas"></canvas>
 
 <header>
-  <div class="logo-section">
+  <div class="logo-section" onclick="window.location.href='index.html'">
     <img src="images/logo.png" alt="Contiknight Engineers Logo">
     <div class="logo-text">
-      <h1>Contiknight Engineers</h1>
-      <p>Mechanical, Electrical & Plumbing Excellence</p>
+      <h1><span class="brand-white">CONTIKNIGHT</span> <span class="brand-gradient">ENGINEERS</span></h1>
+      <p>Precision • Trust • Excellence</p>
     </div>
   </div>
   <nav>
@@ -177,11 +251,14 @@
     <a href="gallery.html">Gallery</a>
     <a href="contacts.html">Contacts</a>
     <a href="career.html">Career</a>
+    <a href="brochure.pdf" class="btn-download" download>
+      <span>Download Brochure</span>
+    </a>
   </nav>
 </header>
 
 <div class="hero">
-  Engineering Your Future
+  <h2>Engineering Your Future</h2>
 </div>
 
 <div class="gif-section">
@@ -190,29 +267,65 @@
   <img src="images/electrical.gif" alt="Electrical">
 </div>
 
-<div class="content">
-  <h2>About Us</h2>
-  <p>At <strong>Contiknight Engineers</strong>, we believe engineering is not just about systems—it’s about people. Every project we take on is a promise: to deliver reliable solutions, build lasting relationships, and create infrastructure that stands the test of time.</p>
-  <p>We specialize in smart plumbing installations, pipelines, and water systems designed for efficiency, safety, and sustainability.</p>
+<div class="main-container">
+  
+  <section class="section-card">
+    <h2>About Us</h2>
+    <p>At <strong>Contiknight Engineers</strong>, we believe engineering is not just about systems—it’s about people. Every project we take on is a promise: to deliver reliable solutions, build lasting relationships, and create infrastructure that stands the test of time.</p>
+    <p>We specialize in smart plumbing installations, pipelines, and water systems designed for efficiency, safety, and sustainability. Our expertise ensures that every mechanical and electrical system we install integrates seamlessly with the architecture of the future.</p>
+  </section>
 
-  <h2>Our Vision</h2>
-  <p>To be recognized as a leading MEP engineering partner that delivers innovative, sustainable, and future-ready solutions.</p>
+  <section class="section-card" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px;">
+    <div>
+      <h2>Our Vision</h2>
+      <p>To be recognized as a leading MEP engineering partner that delivers innovative, sustainable, and future-ready solutions to clients worldwide.</p>
+    </div>
+    <div>
+      <h2>Our Mission</h2>
+      <p>Our mission is to engineer confidence and reliability in every project we undertake, ensuring maximum safety and operational excellence.</p>
+    </div>
+  </section>
 
-  <h2>Our Mission</h2>
-  <p>Our mission is to engineer confidence and reliability in every project we undertake.</p>
+  <section class="section-card">
+    <h2>Our Core Values</h2>
+    <div class="values-grid">
+      <div class="value-box">
+        <h3>Integrity</h3>
+        <p>We operate with honesty, transparency, and ethical practices in everything we do.</p>
+      </div>
+      <div class="value-box">
+        <h3>Innovation</h3>
+        <p>We embrace modern technology and creative solutions to solve complex engineering challenges.</p>
+      </div>
+      <div class="value-box">
+        <h3>Quality</h3>
+        <p>We set high standards and consistently deliver projects that exceed expectations.</p>
+      </div>
+      <div class="value-box">
+        <h3>Safety</h3>
+        <p>We prioritize the well-being of our teams, clients, and communities above all else.</p>
+      </div>
+      <div class="value-box">
+        <h3>Sustainability</h3>
+        <p>We design and execute projects with eco-friendly practices to protect our future.</p>
+      </div>
+      <div class="value-box">
+        <h3>Customer Focus</h3>
+        <p>We listen, adapt, and collaborate closely with clients to bring their vision to life.</p>
+      </div>
+      <div class="value-box">
+        <h3>Excellence</h3>
+        <p>We carry forward a proud family legacy of engineering excellence through dedication and precision.</p>
+      </div>
+    </div>
+  </section>
 
-  <h2>Our Core Values</h2>
-  <p><strong>Integrity:</strong> We operate with honesty, transparency, and ethical practices in everything we do.</p>
-  <p><strong>Innovation:</strong> We embrace modern technology and creative solutions to solve complex engineering challenges.</p>
-  <p><strong>Quality:</strong> We set high standards and consistently deliver projects that exceed expectations.</p>
-  <p><strong>Safety:</strong> We prioritize the well-being of our teams, clients, and communities above all else.</p>
-  <p><strong>Sustainability:</strong> We design and execute projects with eco-friendly practices to protect our future.</p>
-  <p><strong>Customer Focus:</strong> We listen, adapt, and collaborate closely with clients to bring their vision to life.</p>
-  <p><strong>Excellence:</strong> We carry forward a proud family legacy of engineering excellence through dedication and precision.</p>
 </div>
 
+
+
 <footer>
-  <p>&copy; 2026 Contiknight Engineers | Precision. Trust. Excellence.</p>
+  <p>&copy; 2026 Contiknight Engineers | MEP Solutions | Built for the Future</p>
 </footer>
 
 <script>
@@ -227,12 +340,12 @@
   window.addEventListener('resize', resizeCanvas);
   resizeCanvas();
 
-  for (let i = 0; i < 80; i++) {
+  for (let i = 0; i < 90; i++) {
     particles.push({
       x: Math.random() * canvas.width,
       y: Math.random() * canvas.height,
-      vx: (Math.random() - 0.5) * 0.5,
-      vy: (Math.random() - 0.5) * 0.5,
+      vx: (Math.random() - 0.5) * 0.4,
+      vy: (Math.random() - 0.5) * 0.4,
       radius: Math.random() * 1.5 + 1
     });
   }
@@ -242,12 +355,12 @@
     particles.forEach(p => {
       ctx.beginPath();
       ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-      ctx.fillStyle = 'rgba(77,186,226,0.5)';
+      ctx.fillStyle = 'rgba(77,186,226,0.3)';
       ctx.fill();
     });
 
     ctx.strokeStyle = 'rgba(77,186,226,0.1)';
-    ctx.lineWidth = 0.5;
+    ctx.lineWidth = 0.8;
     for (let i = 0; i < particles.length; i++) {
       for (let j = i + 1; j < particles.length; j++) {
         let dx = particles[i].x - particles[j].x;
