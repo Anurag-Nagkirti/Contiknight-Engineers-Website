@@ -4,29 +4,58 @@
   <meta charset="UTF-8">
   <title>Contacts - Contiknight Engineers</title>
   <style>
-    body { font-family: Arial, sans-serif; margin:0; background:#f4f4f4; }
-    header { background:#1a1a2e; color:#fff; display:flex; justify-content:space-between; align-items:center; padding:15px 30px; }
+    body {
+      font-family: Arial, sans-serif;
+      margin:0;
+      padding-top:90px; /* offset for fixed header */
+      background:#0b0c10;
+      color:#fff;
+      overflow-x:hidden;
+    }
+    #bgCanvas {
+      position:fixed; top:0; left:0; width:100%; height:100%;
+      z-index:-1; background:#0b0c10;
+    }
+    header {
+      background:#1a1a2e; color:#fff;
+      display:flex; justify-content:space-between; align-items:center;
+      padding:15px 20px; position:fixed; top:0; left:0; width:100%;
+      z-index:1000; height:90px; box-shadow:0 2px 6px rgba(0,0,0,0.4);
+    }
     .logo-section { display:flex; align-items:center; gap:15px; }
     .logo-section img { height:70px; }
     .logo-text h1 { margin:0; font-size:26px; font-weight:bold; color:#e94560; }
     .logo-text p { margin:0; font-size:14px; color:#ddd; }
-    nav { display:flex; gap:20px; }
+    nav { display:flex; gap:15px; flex-wrap:wrap; justify-content:flex-start; }
     nav a { color:#fff; text-decoration:none; font-size:16px; transition:color 0.3s; }
-    nav a:hover { color:#f1c40f; }
-    .contact-info { background:#fff; padding:40px; max-width:800px; margin:40px auto; border-radius:8px; box-shadow:0 0 10px rgba(0,0,0,0.2); }
+    nav a:hover { color:#fefefe; }
+    .contact-info {
+      background:#fff; color:#000;
+      padding:40px; max-width:800px; margin:40px auto;
+      border-radius:8px; box-shadow:0 0 10px rgba(0,0,0,0.2);
+    }
     .contact-info h2 { color:#333; margin-bottom:20px; }
     .contact-info p { font-size:16px; margin:10px 0; }
     form { margin-top:30px; }
     label { display:block; margin:10px 0 5px; font-weight:bold; }
-    input, select, textarea { width:100%; padding:10px; border:1px solid #ccc; border-radius:5px; }
+    input, select, textarea {
+      width:100%; padding:10px; border:1px solid #ccc; border-radius:5px;
+    }
     textarea { height:120px; }
     .checkbox-group { display:flex; flex-wrap:wrap; gap:10px; margin:10px 0; }
     .checkbox-group label { font-weight:normal; }
-    button { background:#1a1a2e; color:#fff; padding:12px 20px; border:none; border-radius:5px; cursor:pointer; font-size:16px; margin-top:15px; }
+    button {
+      background:#1a1a2e; color:#fff; padding:12px 20px;
+      border:none; border-radius:5px; cursor:pointer;
+      font-size:16px; margin-top:15px;
+    }
     button:hover { background:#e94560; }
+    footer { background:#5aaff4; color:#fbfbfa; text-align:center; padding:15px; margin-top:20px; }
   </style>
 </head>
 <body>
+
+<canvas id="bgCanvas"></canvas>
 
 <header>
   <div class="logo-section">
@@ -53,7 +82,6 @@
 
   <h2>Inquiry Form</h2>
   <form action="mailto:anagkirti@gmail.com" method="post" enctype="text/plain">
-    <!-- Basic Contact Information -->
     <label for="name">Full Name / Primary Contact</label>
     <input type="text" id="name" name="Full Name" required>
 
@@ -65,8 +93,7 @@
 
     <label for="phone">Phone Number</label>
     <input type="tel" id="phone" name="Phone Number">
-
-    <!-- Project Fundamentals -->
+    
     <label for="projectType">Type of Project</label>
     <select id="projectType" name="Project Type">
       <option>Residential</option>
@@ -87,7 +114,6 @@
     <label for="location">Project Location (City/State)</label>
     <input type="text" id="location" name="Project Location">
 
-    <!-- Technical & Logistics Details -->
     <label for="stage">Project Stage</label>
     <select id="stage" name="Project Stage">
       <option>Conceptual / Design</option>
@@ -107,7 +133,6 @@
     <label for="timeline">Estimated Timeline</label>
     <input type="text" id="timeline" name="Estimated Timeline" placeholder="e.g., Start in March 2026, finish by Dec 2026">
 
-    <!-- Deep-Dive Section -->
     <label for="description">Project Description</label>
     <textarea id="description" name="Project Description"></textarea>
 
@@ -118,5 +143,40 @@
   </form>
 </div>
 
-</body>
-</html>
+<footer>
+  <p>&copy; 2026 Contiknight Engineers | Get in touch with us</p>
+</footer>
+
+<script>
+  const canvas = document.getElementById('bgCanvas');
+  const ctx = canvas.getContext('2d');
+  let particles = [];
+
+  function resizeCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+  window.addEventListener('resize', resizeCanvas);
+  resizeCanvas();
+
+  for (let i = 0; i < 100; i++) {
+    particles.push({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      vx: (Math.random() - 0.5),
+      vy: (Math.random() - 0.5),
+      radius: Math.random() * 2 + 1
+    });
+  }
+
+  function draw() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    particles.forEach(p => {
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(77,186,226,0.8)';
+      ctx.shadowColor = '#4dbae2';
+      ctx.shadowBlur = 15;
+      ctx.fill();
+    });
+    for (let i = 0; i < particles.length; i
