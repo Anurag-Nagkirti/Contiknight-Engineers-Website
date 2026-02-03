@@ -9,12 +9,11 @@
       font-family: Arial, sans-serif;
       margin:0;
       padding-top:90px; /* offset for fixed header */
-      background:#0b0c10; /* dark base */
+      background:#0b0c10;
       color:#fff;
       overflow-x: hidden;
     }
 
-    /* Canvas background */
     #bgCanvas {
       position: fixed;
       top:0;
@@ -31,7 +30,7 @@
       display:flex;
       justify-content:space-between;
       align-items:center;
-      padding:15px 20px; /* reduced padding to shift nav left */
+      padding:15px 20px;
       position: fixed;
       top:0;
       left:0;
@@ -44,7 +43,7 @@
     .logo-section img { height:70px; }
     .logo-text h1 { margin:0; font-size:26px; font-weight:bold; color:#e94560; }
     .logo-text p { margin:0; font-size:14px; color:#ddd; }
-    nav { display:flex; gap:15px; } /* tighter gap so all buttons fit */
+    nav { display:flex; gap:15px; flex-wrap:wrap; justify-content:flex-start; }
     nav a { color:#fff; text-decoration:none; font-size:16px; transition:color 0.3s; }
     nav a:hover { color:#fefefe; }
 
@@ -109,7 +108,6 @@
   Welcome to Contiknight Engineers
 </div>
 
-<!-- GIF Section -->
 <div class="gif-section">
   <img src="images/mep_work.gif" alt="MEP Work Animation">
   <img src="images/plumbing.gif" alt="Plumbing Animation">
@@ -118,34 +116,23 @@
 
 <div class="content">
   <h2>About Us</h2>
-  <p>At Contiknight Engineers, we believe engineering is not just about systems—it’s about people. Every project we take on is a promise: to deliver reliable solutions, build lasting relationships, and create infrastructure that stands the test of time. With decades of expertise in plumbing, electrical, and mechanical works, we blend technical mastery with a customer-first approach to achieve excellence.</p>
+  <p>At Contiknight Engineers, we believe engineering is not just about systems—it’s about people. Every project we take on is a promise: to deliver reliable solutions, build lasting relationships, and create infrastructure that stands the test of time...</p>
+  <p>We specialize in smart plumbing installations, pipelines, and water systems designed for efficiency, safety, and sustainability...</p>
 
-  <p>We specialize in smart plumbing installations, pipelines, and water systems designed for efficiency, safety, and sustainability. Our electrical engineers deliver advanced solutions, from safe wiring to intelligent automation and energy optimization. In mechanical and fabrication works, we bring precision and durability, ensuring long-term value for every project.</p>
-
-  <p>Our reputation is built on a proven track record of completing projects on time with uncompromising quality. Safety, compliance, and eco-friendly practices are embedded in our operations, while innovation and modern technology allow us to stay ahead of industry demands. We carry forward a proud family legacy of engineering excellence, blending tradition with professionalism and forward-thinking solutions.</p>
-
-  <p>We also focus on digital transformation in engineering—leveraging cloud-based monitoring, IoT-enabled systems, and predictive maintenance to ensure our clients benefit from cutting-edge technology. Our teams are trained to adapt quickly to evolving industry standards, ensuring resilience and scalability in every solution we deliver.</p>
-
-  <p>Our collaborative approach means we integrate seamlessly with architects, contractors, and stakeholders, ensuring every project is aligned with broader goals. We emphasize documentation, transparency, and continuous improvement, so clients always know the progress and quality benchmarks being achieved.</p>
-
-  <p>What sets us apart is our customer-centric approach. We believe every project is a partnership, and we work closely with clients to understand their unique needs, adapt to challenges, and deliver outcomes that exceed expectations. Transparent communication, ethical practices, and collaborative teamwork define our way of working.</p>
-
-  <p>At Contiknight Engineers, innovation drives us, professionalism defines us, and customer satisfaction inspires us. Together, we build more than infrastructure—we build trust, progress, and a better tomorrow.</p>
-
-    <h2>Our Vision</h2>
-  <p>To be recognized as a leading MEP engineering partner that delivers innovative, sustainable, and future-ready solutions. We aspire to set new benchmarks in quality, safety, and customer satisfaction, while carrying forward our family legacy of engineering excellence with modern practices and global standards.</p>
+  <h2>Our Vision</h2>
+  <p>To be recognized as a leading MEP engineering partner that delivers innovative, sustainable, and future-ready solutions...</p>
 
   <h2>Our Mission</h2>
-  <p>Our mission is to engineer confidence and reliability in every project we undertake. We achieve this by combining technical expertise in plumbing, electrical, and mechanical works with a customer-centric approach that values transparency, collaboration, and trust. We are committed to delivering projects on time with uncompromising quality, ensuring safety and sustainability, adapting to client needs with innovation, and building long-term partnerships based on integrity and professionalism.</p>
+  <p>Our mission is to engineer confidence and reliability in every project we undertake...</p>
 
   <h2>Our Core Values</h2>
-  <p><strong>Integrity:</strong> We operate with honesty, transparency, and ethical practices, building trust with every client and partner.</p>
-  <p><strong>Innovation:</strong> We embrace modern technology and creative solutions, blending tradition with forward-thinking engineering to deliver future-ready results.</p>
-  <p><strong>Quality:</strong> We set high standards and consistently deliver projects that meet or exceed expectations, ensuring durability and long-term performance.</p>
-  <p><strong>Safety:</strong> We prioritize the well-being of our teams, clients, and communities by embedding safety and compliance into every stage of our work.</p>
-  <p><strong>Sustainability:</strong> We design and execute projects with eco-friendly practices, contributing to a greener and more responsible future.</p>
-  <p><strong>Customer Focus:</strong> We listen, adapt, and collaborate closely with clients, ensuring their satisfaction is the ultimate measure of our success.</p>
-  <p><strong>Excellence:</strong> We carry forward a proud family legacy of engineering excellence, driven by professionalism, precision, and a relentless pursuit of progress.</p>
+  <p><strong>Integrity:</strong> We operate with honesty, transparency, and ethical practices...</p>
+  <p><strong>Innovation:</strong> We embrace modern technology and creative solutions...</p>
+  <p><strong>Quality:</strong> We set high standards and consistently deliver projects...</p>
+  <p><strong>Safety:</strong> We prioritize the well-being of our teams, clients, and communities...</p>
+  <p><strong>Sustainability:</strong> We design and execute projects with eco-friendly practices...</p>
+  <p><strong>Customer Focus:</strong> We listen, adapt, and collaborate closely with clients...</p>
+  <p><strong>Excellence:</strong> We carry forward a proud family legacy of engineering excellence...</p>
 </div>
 
 <footer>
@@ -153,7 +140,6 @@
 </footer>
 
 <script>
-  // Enhanced animated background with glowing particles
   const canvas = document.getElementById('bgCanvas');
   const ctx = canvas.getContext('2d');
   let particles = [];
@@ -165,13 +151,12 @@
   window.addEventListener('resize', resizeCanvas);
   resizeCanvas();
 
-  // Create particles
   for (let i = 0; i < 100; i++) {
     particles.push({
       x: Math.random() * canvas.width,
       y: Math.random() * canvas.height,
-      vx: (Math.random() - 0.5) * 1,
-      vy: (Math.random() - 0.5) * 1,
+      vx: (Math.random() - 0.5),
+      vy: (Math.random() - 0.5),
       radius: Math.random() * 2 + 1
     });
   }
@@ -187,7 +172,6 @@
       ctx.fill();
     });
 
-    // Draw connecting lines
     for (let i = 0; i < particles.length; i++) {
       for (let j = i + 1; j < particles.length; j++) {
         let dx = particles[i].x - particles[j].x;
