@@ -11,7 +11,7 @@
       --secondary-color: #4dbae2; 
       --bg-dark: #0b0c10;
       --glass-bg: rgba(255, 255, 255, 0.04);
-      --header-bg: rgba(11, 12, 16, 0.92);
+      --header-bg: rgba(11, 12, 16, 0.95);
       --accent-gradient: linear-gradient(135deg, #e94560 0%, #4dbae2 100%);
     }
 
@@ -27,7 +27,7 @@
       overflow-x: hidden;
     }
 
-    #bgCanvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; }
+    #bgCanvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; }
 
     header {
       background: var(--header-bg);
@@ -41,7 +41,6 @@
       top: 0; left: 0; width: 100%;
       z-index: 1000;
       height: 95px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
       border-bottom: 1px solid rgba(255, 255, 255, 0.05);
     }
 
@@ -56,37 +55,45 @@
     nav a { color: rgba(255,255,255,0.8); text-decoration: none; font-size: 13px; font-weight: 600; text-transform: uppercase; transition: 0.3s; }
     nav a:hover { color: var(--secondary-color); }
 
-    .container { max-width: 1200px; margin: 0 auto; padding: 0 5% 100px; position: relative; z-index: 1; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 5% 100px; }
     .contact-grid { display: grid; grid-template-columns: 1fr 1.5fr; gap: 40px; }
 
     .info-panel { display: flex; flex-direction: column; gap: 20px; }
     .contact-card {
       background: var(--glass-bg);
-      border: 1px solid rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
       padding: 30px;
       border-radius: 20px;
+      backdrop-filter: blur(5px);
+      transition: 0.3s;
     }
+    .contact-card:hover { transform: translateX(5px); border-color: var(--secondary-color); }
     .contact-card h3 { margin: 0 0 10px; color: var(--secondary-color); font-size: 18px; }
     .contact-card p { margin: 5px 0; font-size: 14px; color: #ccd6f6; }
-    .contact-card .email { color: var(--primary-color); font-weight: 600; word-break: break-all; }
+    .contact-card .email { color: var(--primary-color); font-weight: 600; }
+
+    /* Updated Map Styling */
+    .map-card { padding: 0; overflow: hidden; height: 350px; position: relative; }
+    .map-card iframe { filter: invert(90%) hue-rotate(180deg) brightness(95%) contrast(90%); }
 
     .form-panel {
       background: var(--glass-bg);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      padding: 40px;
+      backdrop-filter: blur(25px);
+      -webkit-backdrop-filter: blur(25px);
+      padding: 50px;
       border-radius: 30px;
-      border: 1px solid rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
     }
 
     .form-section-title {
-      font-size: 12px;
+      font-size: 13px;
       text-transform: uppercase;
       color: var(--primary-color);
       letter-spacing: 2px;
-      margin: 25px 0 15px;
+      margin: 30px 0 15px;
       border-bottom: 1px solid rgba(255,255,255,0.1);
       padding-bottom: 5px;
+      font-weight: 800;
     }
 
     label { display: block; margin-bottom: 8px; font-size: 13px; font-weight: 600; color: #8892b0; }
@@ -95,20 +102,27 @@
       width: 100%;
       background: rgba(255, 255, 255, 0.05);
       border: 1px solid rgba(255, 255, 255, 0.1);
-      padding: 12px;
+      padding: 12px 15px;
       border-radius: 10px;
       color: #fff;
       font-family: inherit;
-      margin-bottom: 15px;
+      margin-bottom: 20px;
     }
-
     select option { background-color: #0b0c10; color: #fff; }
 
     .checkbox-group { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 20px; }
-    .checkbox-item { display: flex; align-items: center; gap: 8px; font-size: 13px; color: #cbd5e1; }
+    .checkbox-item { display: flex; align-items: center; gap: 10px; font-size: 13px; color: #cbd5e1; }
     .checkbox-item input { width: auto; margin: 0; }
 
-    .submit-btn {
+    .file-upload-box {
+      border: 1px dashed rgba(77, 186, 226, 0.5);
+      padding: 15px;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.02);
+      margin-bottom: 20px;
+    }
+
+    button.submit-btn {
       background: var(--accent-gradient);
       color: #fff;
       width: 100%;
@@ -117,18 +131,20 @@
       border-radius: 12px;
       font-weight: 800;
       text-transform: uppercase;
+      letter-spacing: 2px;
       cursor: pointer;
       transition: 0.3s;
     }
 
-    .submit-btn:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(233, 69, 96, 0.3); }
-
-    footer { text-align: center; padding: 40px; color: #4dbae2; font-size: 13px; }
+    button.submit-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px rgba(233, 69, 96, 0.4);
+    }
 
     @media (max-width: 900px) {
       .contact-grid { grid-template-columns: 1fr; }
-      header { height: auto; padding: 15px; flex-direction: column; }
-      body { padding-top: 220px; }
+      header { height: auto; padding: 20px; flex-direction: column; gap: 15px; }
+      body { padding-top: 250px; }
     }
   </style>
 </head>
@@ -154,9 +170,9 @@
 </header>
 
 <div class="container">
-  <div style="text-align: center; margin-bottom: 50px;">
-    <h1 style="font-size: clamp(2rem, 5vw, 3.5rem); margin-bottom: 10px;">Get In Touch</h1>
-    <p style="color: #8892b0;">Tell us about your MEP project requirements.</p>
+  <div style="text-align: center; margin-bottom: 60px;">
+    <h1 style="font-size: 3.5rem; margin-bottom: 10px;">Get In Touch</h1>
+    <p style="color: #8892b0;">Collaborate with the precision of Contiknight Engineers.</p>
   </div>
 
   <div class="contact-grid">
@@ -177,102 +193,142 @@
         <p><strong>Mobile:</strong> +91 8412975410</p>
         <p class="email">sanghmitra.nagkirti@contiknight.com</p>
       </div>
-      <div class="contact-card" style="padding: 0; overflow: hidden; height: 250px;">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d121059.047111560!2d73.7804555!3d18.5248706!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2bf2e67461101%3A0x828d43105d951336!2sPune%2C%20Maharashtra!5e0!3m2!1sen!2sin!4v1700000000000" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+      
+      <div class="contact-card map-card">
+        <iframe 
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d121059.0344739699!2d73.73344!3d18.62978!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2b8eec0a5432b%3A0x1d3744383c072489!2sPimpri-Chinchwad%2C%20Maharashtra!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin" 
+          width="100%" 
+          height="100%" 
+          style="border:0;" 
+          allowfullscreen="" 
+          loading="lazy" 
+          referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
       </div>
     </div>
 
     <div class="form-panel">
       <form>
-        <div class="form-section-title">Contact Details</div>
+        <div class="form-section-title">Primary Contact</div>
         <label>Full Name</label>
-        <input type="text" placeholder="John Doe" required>
+        <input type="text" name="name" placeholder="John Doe" required>
         
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
           <div>
             <label>Email Address</label>
-            <input type="email" placeholder="email@company.com" required>
+            <input type="email" name="email" placeholder="email@company.com" required>
           </div>
           <div>
             <label>Phone Number</label>
-            <input type="tel" placeholder="+91 XXXXX XXXXX">
+            <input type="tel" name="phone" placeholder="+91 XXXXX XXXXX">
           </div>
         </div>
 
-        <div class="form-section-title">Project Details</div>
-        <label>Project Type</label>
-        <select>
-          <option>Residential</option>
-          <option>Commercial</option>
-          <option>Industrial</option>
-          <option>Infrastructure</option>
+        <div class="form-section-title">Project Scope</div>
+        <label>Type of Project</label>
+        <select name="type">
+          <option>Residential (Villa/Apartment)</option>
+          <option>Commercial (Office/Mall/Hotel)</option>
+          <option>Industrial (Factory/Warehouse)</option>
+          <option>Infrastructure (Data Center/Hospital)</option>
         </select>
 
         <label>Services Required</label>
         <div class="checkbox-group">
-          <div class="checkbox-item"><input type="checkbox"> HVAC</div>
-          <div class="checkbox-item"><input type="checkbox"> Electrical</div>
-          <div class="checkbox-item"><input type="checkbox"> Plumbing/Fire</div>
-          <div class="checkbox-item"><input type="checkbox"> Solar</div>
-          <div class="checkbox-item"><input type="checkbox"> BIM</div>
-          <div class="checkbox-item"><input type="checkbox"> Audits</div>
+          <div class="checkbox-item"><input type="checkbox" value="HVAC"> Mechanical/HVAC</div>
+          <div class="checkbox-item"><input type="checkbox" value="Electrical"> Electrical Systems</div>
+          <div class="checkbox-item"><input type="checkbox" value="Plumbing"> Plumbing & Fire</div>
+          <div class="checkbox-item"><input type="checkbox" value="Solar"> Solar/Renewable</div>
+          <div class="checkbox-item"><input type="checkbox" value="BIM"> BIM Modeling</div>
+          <div class="checkbox-item"><input type="checkbox" value="Audit"> Energy Audit</div>
         </div>
 
-        <div class="form-section-title">Project Lifecycle</div>
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+        <div class="form-section-title">Logistics & Attachments</div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
           <div>
-            <label>Current Stage</label>
-            <select>
-              <option>Planning/Concept</option>
-              <option>Design Dev</option>
-              <option>Tendering</option>
-              <option>Execution</option>
-              <option>Retrofit</option>
-              <option>AMC/Maintenance</option>
+            <label>Detailed Project Stage</label>
+            <select name="stage">
+              <option>Initial Planning / Concept</option>
+              <option>Detailed Design Development</option>
+              <option>Tendering & Estimation</option>
+              <option>On-site Execution / Construction</option>
+              <option>Retrofitting / Renovation</option>
+              <option>Maintenance & AMC</option>
             </select>
           </div>
           <div>
             <label>Estimated Budget</label>
-            <select>
-              <option>Below ₹50L</option>
-              <option>₹50L - ₹1Cr</option>
-              <option>₹1Cr - ₹5Cr</option>
-              <option>Above ₹5Cr</option>
+            <select name="budget">
+              <option>Below ₹50 Lakhs</option>
+              <option>₹50 Lakhs - ₹1 Crore</option>
+              <option>₹1 Crore - ₹5 Crores</option>
+              <option>Above ₹5 Crores</option>
             </select>
           </div>
         </div>
 
-        <label>Attach Documents (Drawings/BOQ)</label>
-        <input type="file" multiple style="border: 1px dashed rgba(255,255,255,0.2); background: none;">
+        <label>Attach Drawings / Documents (PDF, DWG, JPG)</label>
+        <div class="file-upload-box">
+          <input type="file" name="attachment" multiple style="background:none; border:none; margin:0; font-size: 12px; color: #8892b0;">
+        </div>
 
-        <label>Brief Description</label>
-        <textarea placeholder="Specific requirements..." rows="4"></textarea>
+        <label>Project Description</label>
+        <textarea name="message" placeholder="Describe your requirements..." rows="4"></textarea>
 
-        <button type="button" class="submit-btn" onclick="alert('Submission received! Our team will contact you shortly.')">Send Inquiry</button>
+        <button type="button" class="submit-btn" onclick="alert('Inquiry received! Our engineers will review your files and contact you shortly.')">Submit Detailed Inquiry</button>
       </form>
     </div>
   </div>
 </div>
 
-<footer>
-  <p>© 2026 Contiknight Engineers | Built on Trust and Precision Engineering</p>
-</footer>
-
 <script>
   const canvas = document.getElementById('bgCanvas');
   const ctx = canvas.getContext('2d');
   let particles = [];
-
-  function resize() {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-  }
+  function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
   window.addEventListener('resize', resize);
   resize();
 
-  for (let i = 0; i < 60; i++) {
+  const PARTICLE_COUNT = 85;
+  const CONNECTION_DIST = 165;
+  const SPEED = 0.35;
+
+  for (let i = 0; i < PARTICLE_COUNT; i++) {
     particles.push({
       x: Math.random() * canvas.width,
       y: Math.random() * canvas.height,
-      vx: (Math.random() - 0.5) * 0.4,
-      vy: (Math.random() - 0.5
+      vx: (Math.random() - 0.5) * SPEED,
+      vy: (Math.random() - 0.5) * SPEED,
+      radius: Math.random() * 1.5 + 1
+    });
+  }
+
+  function loop() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    particles.forEach((p, i) => {
+      p.x += p.vx; p.y += p.vy;
+      if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
+      if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(77, 186, 226, 0.45)'; 
+      ctx.fill();
+      for (let j = i + 1; j < particles.length; j++) {
+        let dx = p.x - particles[j].x, dy = p.y - particles[j].y;
+        let dist = Math.sqrt(dx*dx + dy*dy);
+        if (dist < CONNECTION_DIST) {
+          ctx.beginPath();
+          ctx.strokeStyle = `rgba(77, 186, 226, ${0.18 * (1 - dist/CONNECTION_DIST)})`;
+          ctx.lineWidth = 0.9;
+          ctx.moveTo(p.x, p.y);
+          ctx.lineTo(particles[j].x, particles[j].y);
+          ctx.stroke();
+        }
+      }
+    });
+    requestAnimationFrame(loop);
+  }
+  loop();
+</script>
+</body>
+</html>
