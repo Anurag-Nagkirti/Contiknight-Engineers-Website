@@ -9,7 +9,7 @@
       font-family: Arial, sans-serif;
       margin:0;
       padding:0;
-      background:#0d1b2a; /* dark tech background */
+      background:#0b0c10; /* dark base */
       color:#fff;
       position: relative;
       overflow-x: hidden;
@@ -23,7 +23,7 @@
       width:100%;
       height:100%;
       z-index:-1;
-      background:#0d1b2a;
+      background:#0b0c10;
     }
 
     header {
@@ -110,10 +110,24 @@
 </div>
 
 <div class="content">
-  <!-- Your About Us, Vision, Mission, Core Values content remains unchanged -->
+  <!-- All your About Us, Vision, Mission, Core Values content remains unchanged -->
   <h2>About Us</h2>
-  <p>At Contiknight Engineers, we believe engineering is not just about systems—it’s about people...</p>
-  <!-- (rest of your content here) -->
+  <p>At Contiknight Engineers, we believe engineering is not just about systems—it’s about people. Every project we take on is a promise: to deliver reliable solutions, build lasting relationships, and create infrastructure that stands the test of time...</p>
+
+  <h2>Our Vision</h2>
+  <p>To be recognized as a leading MEP engineering partner that delivers innovative, sustainable, and future-ready solutions...</p>
+
+  <h2>Our Mission</h2>
+  <p>Our mission is to engineer confidence and reliability in every project we undertake...</p>
+
+  <h2>Our Core Values</h2>
+  <p><strong>Integrity:</strong> We operate with honesty, transparency, and ethical practices...</p>
+  <p><strong>Innovation:</strong> We embrace modern technology and creative solutions...</p>
+  <p><strong>Quality:</strong> We set high standards and consistently deliver projects...</p>
+  <p><strong>Safety:</strong> We prioritize the well-being of our teams, clients, and communities...</p>
+  <p><strong>Sustainability:</strong> We design and execute projects with eco-friendly practices...</p>
+  <p><strong>Customer Focus:</strong> We listen, adapt, and collaborate closely with clients...</p>
+  <p><strong>Excellence:</strong> We carry forward a proud family legacy of engineering excellence...</p>
 </div>
 
 <footer>
@@ -121,7 +135,7 @@
 </footer>
 
 <script>
-  // Simple moving particle background
+  // Enhanced animated background with glowing particles
   const canvas = document.getElementById('bgCanvas');
   const ctx = canvas.getContext('2d');
   let particles = [];
@@ -134,22 +148,24 @@
   resizeCanvas();
 
   // Create particles
-  for (let i = 0; i < 80; i++) {
+  for (let i = 0; i < 100; i++) {
     particles.push({
       x: Math.random() * canvas.width,
       y: Math.random() * canvas.height,
-      vx: (Math.random() - 0.5) * 0.7,
-      vy: (Math.random() - 0.5) * 0.7,
-      radius: 2
+      vx: (Math.random() - 0.5) * 1,
+      vy: (Math.random() - 0.5) * 1,
+      radius: Math.random() * 2 + 1
     });
   }
 
   function draw() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    ctx.fillStyle = '#4dbae2';
     particles.forEach(p => {
       ctx.beginPath();
       ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(77,186,226,0.8)';
+      ctx.shadowColor = '#4dbae2';
+      ctx.shadowBlur = 15;
       ctx.fill();
     });
 
@@ -159,7 +175,7 @@
         let dx = particles[i].x - particles[j].x;
         let dy = particles[i].y - particles[j].y;
         let dist = Math.sqrt(dx*dx + dy*dy);
-        if (dist < 120) {
+        if (dist < 150) {
           ctx.strokeStyle = 'rgba(77,186,226,0.2)';
           ctx.lineWidth = 1;
           ctx.beginPath();
